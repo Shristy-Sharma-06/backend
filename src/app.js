@@ -20,6 +20,17 @@ app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public"));
 app.use(cookieParser());
 
+
+// ✅ Add JSON body parsing ONLY for routes that are not multipart
+// app.use((req, res, next) => {
+//   if (req.headers['content-type']?.startsWith("multipart/form-data")) {
+//     return next(); // let multer handle it
+//   }
+//   express.json({ limit: "16kb" })(req, res, () => {
+//     express.urlencoded({ extended: true, limit: "16kb" })(req, res, next);
+//   });
+// });
+
 // routes import 
 
 import userRouter from './routes/user.routes.js'
